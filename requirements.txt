@@ -3,3 +3,5 @@ psutil
 SpeechRecognition
 pyaudio
 vosk
+sounddevice
+python-dotenv
