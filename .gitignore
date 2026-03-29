@@ -1,0 +1,11 @@
+# Models
+models/
+tts/piper/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Env
+.env
