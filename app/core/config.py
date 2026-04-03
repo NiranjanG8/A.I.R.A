@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 def resolve_path(relative_path: str) -> str:
     base_path = getattr(sys, "_MEIPASS", os.getcwd())
     return os.path.join(base_path, relative_path)
