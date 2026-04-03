@@ -67,7 +67,6 @@ if __name__ == "__main__":
     print("🚀 Setting up AIRA models...\n")
 
     setup_vosk()
-    setup_piper()
     setup_piper_voice()
 
     print("\n✅ All models ready!")
