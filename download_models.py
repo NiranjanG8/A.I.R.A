@@ -42,21 +42,6 @@ def setup_vosk():
     extract_zip(zip_path, extract_to)
 
 
-# ------------------ PIPER ------------------
-
-def setup_piper():
-    # Piper Windows release
-    piper_url = "https://github.com/rhasspy/piper/releases/latest/download/piper_windows_x64.zip"
-    zip_path = "tts/piper/piper.zip"
-    extract_to = "tts/piper/"
-
-    if os.path.exists("tts/piper/piper.exe"):
-        print("Piper already exists.")
-    else:
-        download_file(piper_url, zip_path)
-        extract_zip(zip_path, extract_to)
-
-
 # ------------------ PIPER VOICE ------------------
 
 def setup_piper_voice():
