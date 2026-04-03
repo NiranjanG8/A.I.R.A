@@ -12,5 +12,4 @@ LISTEN_MODE = "auto"
 VOSK_MODEL_PATH = "models/vosk-model-small-en-us-0.15"
 
 # Piper TTS
-PIPER_PATH = "tts/piper/piper.exe"
 PIPER_MODEL = "tts/piper/en_US-lessac-medium.onnx"
