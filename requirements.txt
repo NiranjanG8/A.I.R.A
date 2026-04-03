@@ -1,0 +1,8 @@
+PyQt5
+piper-tts
+psutil
+SpeechRecognition
+pyaudio
+vosk
+sounddevice
+python-dotenv

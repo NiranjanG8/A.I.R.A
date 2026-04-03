@@ -1,0 +1,17 @@
+# Models
+models/
+tts/piper/
+ollama/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Build output
+build/
+dist/
+*.spec
+
+# Env
+.env
