@@ -27,19 +27,8 @@ It is designed to be practical on a real PC: voice and typed commands, live lang
 
 ## Screenshots
 
-Add your screenshots or GIFs under `docs/media/` and reference them here.
-
-Suggested files:
-- `docs/media/aira-home.png`
-- `docs/media/aira-kannada.png`
-- `docs/media/aira-demo.gif`
-
-Example markdown you can use later:
-
 ```md
-![Aira Home](docs/media/aira-home.png)
-![Aira Kannada Mode](docs/media/aira-kannada.png)
-![Aira Demo](docs/media/aira-demo.gif)
+![Aira Home](docs/media/aira_home.png)
 ```
 
 ## Features
