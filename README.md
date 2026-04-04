@@ -1,6 +1,29 @@
 # Aira AI Assistant
 
-A Windows-first desktop voice assistant with a PyQt GUI, multilingual speech flow, local Ollama support, and installer automation.
+![Platform](https://img.shields.io/badge/platform-Windows-0f172a?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.10%2B-7c3aed?style=flat-square)
+![GUI](https://img.shields.io/badge/gui-PyQt5-d946ef?style=flat-square)
+![LLM](https://img.shields.io/badge/llm-Ollama-a21caf?style=flat-square)
+
+Aira is a Windows-first desktop voice assistant with a Jarvis-inspired PyQt interface, multilingual speech flow, local Ollama support, and a one-command installer.
+
+It is designed to be practical on a real PC: voice and typed commands, live language switching, offline or online speech recognition, local or fallback speech synthesis, and automatic Ollama model selection based on the machine it is installed on.
+
+## Highlights
+- Jarvis-style desktop UI with arc-reactor inspired visuals
+- Voice commands plus typed command fallback
+- Multilingual speech flow for English, Hindi, Kannada, and Telugu
+- Online Google STT with Vosk offline fallback
+- Cloud, Piper, and Windows voice fallback chain
+- Ollama model auto-selection based on RAM, CPU, and free storage
+- Windows installer script for first-run setup
+
+## Demo Flow
+- Clone the repo
+- Run `.\install.ps1`
+- Let the installer fetch Python packages, models, and an Ollama model
+- Start Aira with `python -m app.main`
+- Speak or type commands such as time, battery, Notepad control, and multilingual prompts
 
 ## Features
 - Voice and typed commands
@@ -64,6 +87,17 @@ python -m app.main
 ```powershell
 python -m app.main
 ```
+
+## Example Commands
+
+- `what time is it`
+- `battery`
+- `open notepad`
+- `write hello world in notepad`
+- `mera naam kya hai`
+- `ಸಮಯ ಎಷ್ಟು`
+- `టైమ్ ఎంత`
+- `exit`
 
 ## Environment
 
