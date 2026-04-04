@@ -30,6 +30,9 @@ It is designed to be practical on a real PC: voice and typed commands, live lang
 ```md
 ![Aira Home](docs/media/aira_home.png)
 ```
+<p align="center">
+  <img src="docs/media/aira-home.png" width="700"/>
+</p>
 
 ## Features
 - Voice and typed commands
