@@ -1,12 +1,15 @@
 # Models
 models/
 tts/piper/
+tts/output/
 ollama/
 
 # Python
 __pycache__/
 *.pyc
+.pytest_cache/
 .venv/
+venv/
 
 # Build output
 build/
@@ -15,3 +18,7 @@ dist/
 
 # Env
 .env
+
+# OS/editor
+.DS_Store
+Thumbs.db

@@ -2,6 +2,8 @@ import json
 import urllib.error
 import urllib.request
 
+import requests
+
 from app.core.config import (
     OLLAMA_MODEL,
     OLLAMA_URL,
@@ -10,6 +12,20 @@ from app.core.config import (
     OPENAI_URL,
     USE_OLLAMA,
     USE_OPENAI,
+)
+
+_TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
+_TRANSLATE_LANGUAGE_MAP = {
+    "en-IN": "en",
+    "hi-IN": "hi",
+    "kn-IN": "kn",
+    "te-IN": "te",
+}
+_FAST_ASSISTANT_PROMPT = (
+    "You are Aira, a fast desktop voice assistant. "
+    "Answer directly, practically, and briefly. "
+    "Prefer 1 to 3 short sentences. "
+    "Do not add long introductions, lists, or extra background unless the user clearly asks for depth."
 )
 
 
@@ -45,8 +61,13 @@ def ask_ollama(prompt: str):
     payload = json.dumps(
         {
             "model": model_name,
-            "prompt": prompt,
+            "prompt": f"{_FAST_ASSISTANT_PROMPT}\n\nUser request:\n{prompt}",
             "stream": False,
+            "options": {
+                "temperature": 0.2,
+                "top_p": 0.9,
+                "num_predict": 120,
+            },
         }
     ).encode("utf-8")
 
@@ -57,7 +78,7 @@ def ask_ollama(prompt: str):
     )
 
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
+        with urllib.request.urlopen(request, timeout=18) as response:
             data = json.loads(response.read().decode("utf-8"))
             text = data.get("response", "").strip()
             return text or None
@@ -116,3 +137,75 @@ def ask_llm(prompt: str):
         return response
 
     return ask_openai(prompt)
+
+
+def translate_text_cloud(text: str, language_code: str):
+    target = _TRANSLATE_LANGUAGE_MAP.get(language_code, "en")
+    if target == "en":
+        return text
+
+    params = {
+        "client": "gtx",
+        "sl": "auto",
+        "tl": target,
+        "dt": "t",
+        "q": text,
+    }
+    headers = {
+        "User-Agent": "Mozilla/5.0",
+    }
+
+    try:
+        response = requests.get(_TRANSLATE_URL, params=params, headers=headers, timeout=20)
+        response.raise_for_status()
+        data = response.json()
+        parts = data[0] if data and isinstance(data, list) else []
+        translated = "".join(part[0] for part in parts if part and part[0])
+        return translated.strip() or None
+    except Exception as error:
+        print("Cloud translate error:", error)
+        return None
+
+
+def translate_text(text: str, language_code: str):
+    if not text:
+        return None
+
+    language_names = {
+        "en-IN": "English",
+        "hi-IN": "Hindi",
+        "kn-IN": "Kannada",
+        "te-IN": "Telugu",
+    }
+    script_names = {
+        "en-IN": "Latin script",
+        "hi-IN": "Devanagari script",
+        "kn-IN": "Kannada script",
+        "te-IN": "Telugu script",
+    }
+    target_language = language_names.get(language_code, "English")
+    if target_language == "English":
+        return text
+
+    cloud_translation = translate_text_cloud(text, language_code)
+    if cloud_translation:
+        return cloud_translation
+
+    target_script = script_names.get(language_code, "native script")
+    prompt = (
+        f"Translate the following assistant reply into fluent, natural {target_language} written in {target_script}. "
+        f"Do not transliterate into English. Do not explain. Do not add labels. "
+        f"Keep proper nouns only when necessary, but write the rest fully in {target_script}. "
+        "Return only the final translated text.\n\n"
+        f"Reply:\n{text}"
+    )
+
+    response = ask_ollama(prompt)
+    if response:
+        return response.strip()
+
+    response = ask_openai(prompt)
+    if response:
+        return response.strip()
+
+    return text

@@ -1,4 +1,4 @@
-from app.core.assistant import run
+from app.gui.ui import launch_ui
 
 if __name__ == "__main__":
-    run()
+    launch_ui()

@@ -30,6 +30,7 @@ PIPER_MODEL = resolve_path(os.getenv("PIPER_MODEL", "tts/piper/en_US-lessac-medi
 PIPER_CONFIG = resolve_path(
     os.getenv("PIPER_CONFIG", "tts/piper/en_US-lessac-medium.onnx.json")
 )
+PIPER_EXE = resolve_path(os.getenv("PIPER_EXE", "tts/piper/piper.exe"))
 
 # Local LLM via Ollama
 USE_OLLAMA = env_flag("USE_OLLAMA", default=True)
