@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/python-3.10%2B-7c3aed?style=flat-square)
 ![GUI](https://img.shields.io/badge/gui-PyQt5-d946ef?style=flat-square)
 ![LLM](https://img.shields.io/badge/llm-Ollama-a21caf?style=flat-square)
-<img src="docs/media/aira_home.png" />
+<img src="docs/media/aira.png" />
 Aira is a Windows-first desktop voice assistant with a Jarvis-inspired PyQt interface, multilingual speech flow, local Ollama support, and a one-command installer.
 
 It is designed to be practical on a real PC: voice and typed commands, live language switching, offline or online speech recognition, local or fallback speech synthesis, and automatic Ollama model selection based on the machine it is installed on.
